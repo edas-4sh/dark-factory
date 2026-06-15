@@ -1,1 +1,1 @@
-# New Repository\n\nThis repository was generated automatically. It contains a basic project scaffold with a README and a .gitignore file.
+# New Repository\n\nThis is a newly created repository with basic setup.
