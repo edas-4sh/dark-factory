@@ -1,0 +1,22 @@
+# GitHub Actions CI pipeline
+
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Yaml linting
+        run: yamllint .
+      - name: Python linting
+        run: pylint .
+      - name: Run tests
+        run: pytest -v
