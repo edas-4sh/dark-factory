@@ -1,8 +1,1 @@
-node_modules/
-dist/
-.turbo/
-*.db
-*.db-journal
-data/
-.env
-.env.local
+node_modules/\n/dist/\n.env\n*.log
