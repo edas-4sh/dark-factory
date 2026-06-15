@@ -26,6 +26,10 @@ export abstract class BaseAgent {
 
   abstract getSystemPrompt(): string;
 
+  getSupportedModes(): AgentMode[] {
+    return ['coder', 'reviewer', 'doctor'];
+  }
+
   async start(): Promise<void> {
     await this.register();
     await this.heartbeatLoop();
@@ -68,7 +72,6 @@ export abstract class BaseAgent {
       try {
         const response = await fetch(`${this.orchestratorUrl}/api/tasks/queued`);
         const tasks = await response.json() as Array<Record<string, unknown>>;
-        // Check if there's a task for this agent
         for (const task of tasks) {
           if (task.assigned_agent_id === this.config.id) {
             await this.handleTask(task as Record<string, unknown>);
@@ -87,11 +90,14 @@ export abstract class BaseAgent {
 
     const systemPrompt = this.getSystemPrompt();
     const userMessage = `Task: ${task.title}\n\nDescription: ${task.description}\n\nSource: ${task.source_url || 'none'}`;
+    const modes = this.getSupportedModes();
 
-    const functions: LLMFunction[] = [
-      {
+    const functions: LLMFunction[] = [];
+
+    if (modes.includes('coder')) {
+      functions.push({
         name: 'act_as_coder',
-        description: 'Write code to implement the task',
+        description: 'Write code to implement the task. Creates a branch, commits files, and opens a PR.',
         parameters: {
           type: 'object',
           properties: {
@@ -112,21 +118,27 @@ export abstract class BaseAgent {
           },
           required: ['branchName', 'files', 'prTitle', 'prBody'],
         },
-      },
-      {
+      });
+    }
+
+    if (modes.includes('reviewer')) {
+      functions.push({
         name: 'act_as_reviewer',
-        description: 'Review code changes',
+        description: 'Review another agent\'s code changes on a PR. You must NEVER review your own code.',
         parameters: {
           type: 'object',
           properties: {
             prNumber: { type: 'number', description: 'PR number to review' },
             verdict: { type: 'string', enum: ['approve', 'request_changes', 'reject'] },
-            comments: { type: 'string', description: 'Review comments' },
+            comments: { type: 'string', description: 'Detailed review comments' },
           },
           required: ['prNumber', 'verdict', 'comments'],
         },
-      },
-      {
+      });
+    }
+
+    if (modes.includes('doctor')) {
+      functions.push({
         name: 'act_as_doctor',
         description: 'Perform health check on agent or system',
         parameters: {
@@ -137,8 +149,8 @@ export abstract class BaseAgent {
           },
           required: ['targetAgentId', 'diagnosis'],
         },
-      },
-    ];
+      });
+    }
 
     const response = await this.llm.chat([
       { role: 'system', content: systemPrompt },

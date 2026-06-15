@@ -69,8 +69,9 @@ export function apiRouter(db: DB, agentManager: AgentManager, taskQueue: TaskQue
   });
 
   router.post('/work-items/:id/complete', (req: Request, res: Response) => {
-    const { output, error } = req.body;
-    taskQueue.completeWorkItem(req.params.id, output, error);
+    const { taskId, output, error } = req.body;
+    if (!taskId) return res.status(400).json({ error: 'Missing taskId' });
+    taskQueue.completeWorkItem(req.params.id, taskId, output, error);
     res.json({ status: 'ok' });
   });
 
