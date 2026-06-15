@@ -14,7 +14,7 @@ export default function App() {
       <nav style={{ backgroundColor: '#1f2937', borderBottom: '1px solid #374151' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '0 16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', height: '56px' }}>
-            <span style={{ fontSize: '1.25rem', fontWeight: 'bold', marginRight: '32px' }}>🏭 Dark Factory</span>
+            <span style={{ fontSize: '1.25rem', fontWeight: 'bold', marginRight: '32px' }}>🏭 EDAS — Dark Factory</span>
             <div style={{ display: 'flex', gap: '8px' }}>
               <NavLink to="/" end className={linkClass}>Overview</NavLink>
               <NavLink to="/agents" className={linkClass}>Agents</NavLink>

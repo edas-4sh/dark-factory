@@ -1,6 +1,7 @@
 {
   "name": "dark-factory",
   "private": true,
+  "description": "EDAS (Enhanced Development Assisting Software) - Dark Factory: 5 AI agents orchestrated to code, review, and monitor health",
   "workspaces": [
     "packages/*",
     "services/orchestrator",
