@@ -1,29 +1,11 @@
 {
-  "name": "dark-factory",
-  "private": true,
-  "description": "EDAS (Enhanced Development Assisting Software) - Dark Factory: 5 AI agents orchestrated to code, review, and monitor health",
-  "workspaces": [
-    "packages/*",
-    "services/orchestrator",
-    "services/agents/*",
-    "services/dashboard"
-  ],
+  "name": "hello-world-server",
+  "version": "1.0.0",
+  "description": "A simple Node.js HTTP server that returns 'Hello World'",
+  "main": "server.js",
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "start": "node services/orchestrator/dist/index.js",
-    "lint": "turbo run lint",
-    "seed": "turbo run seed",
-    "clean": "turbo run clean"
+    "start": "node server.js"
   },
-  "packageManager": "npm@11.0.0",
-  "devDependencies": {
-    "@types/node": "^20.0.0",
-    "tsx": "^4.0.0",
-    "turbo": "^2.0.0",
-    "typescript": "^5.4.0"
-  },
-  "dependencies": {
-    "octokit": "^3.2.2"
-  }
+  "author": "",
+  "license": "MIT"
 }
