@@ -1,9 +1,11 @@
 # Hello World Script
 
-Run the script with:
+This repository includes a simple JavaScript script that prints "Hello, world!" to the console.
+
+## How to run
 
 ```bash
-node src/hello-world.js
+node hello.js
 ```
 
-It will print `Hello, world!` to the console.
+Make sure you have Node.js installed.
