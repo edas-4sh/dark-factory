@@ -1,0 +1,25 @@
+{
+  "name": "dark-factory",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "services/orchestrator",
+    "services/agents/*",
+    "services/dashboard"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "start": "node services/orchestrator/dist/index.js",
+    "lint": "turbo run lint",
+    "seed": "turbo run seed",
+    "clean": "turbo run clean"
+  },
+  "packageManager": "npm@11.0.0",
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0"
+  }
+}

@@ -1,0 +1,46 @@
+services:
+  - type: web
+    name: dark-factory-orchestrator
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start -w services/orchestrator
+    envVars:
+      - key: PORT
+        value: "3001"
+      - key: DATABASE_PATH
+        value: /var/data/dark-factory.db
+      - key: OPENROUTER_API_KEY
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GITHUB_OWNER
+        sync: false
+      - key: GITHUB_REPO
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: NOTIFICATION_EMAIL
+        sync: false
+    disk:
+      name: data
+      mountPath: /var/data
+      sizeGB: 1
+
+  - type: web
+    name: dark-factory-dashboard
+    env: static
+    region: oregon
+    plan: free
+    buildCommand: npm install && npm run build -w services/dashboard
+    staticPublishPath: services/dashboard/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://dark-factory-orchestrator.onrender.com

@@ -1,0 +1,17 @@
+{
+  "name": "@dark-factory/db",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "seed": "tsx src/seed.ts",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@dark-factory/shared": "*",
+    "sql.js": "^1.10.0"
+  }
+}
