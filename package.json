@@ -1,29 +1,7 @@
 {
-  "name": "dark-factory",
+  "name": "new-repo",
+  "version": "0.1.0",
   "private": true,
-  "description": "EDAS (Enhanced Development Assisting Software) - Dark Factory: 5 AI agents orchestrated to code, review, and monitor health",
-  "workspaces": [
-    "packages/*",
-    "services/orchestrator",
-    "services/agents/*",
-    "services/dashboard"
-  ],
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "start": "node services/orchestrator/dist/index.js",
-    "lint": "turbo run lint",
-    "seed": "turbo run seed",
-    "clean": "turbo run clean"
-  },
-  "packageManager": "npm@11.0.0",
-  "devDependencies": {
-    "@types/node": "^20.0.0",
-    "tsx": "^4.0.0",
-    "turbo": "^2.0.0",
-    "typescript": "^5.4.0"
-  },
-  "dependencies": {
-    "octokit": "^3.2.2"
-  }
+  "scripts": {},
+  "dependencies": {}
 }
