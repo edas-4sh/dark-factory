@@ -103,7 +103,7 @@ export function HealthBar({ value, height = 6, showLabel = true }: HealthBarProp
 }
 
 interface StatCardProps {
-  icon: string;
+  icon: React.ReactNode;
   label: string;
   value: string | number;
   trend?: string;
@@ -127,7 +127,6 @@ export function StatCard({ icon, label, value, trend, color = '#3b82f6' }: StatC
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          fontSize: '1.3rem',
         }}>
           {icon}
         </div>
@@ -136,7 +135,13 @@ export function StatCard({ icon, label, value, trend, color = '#3b82f6' }: StatC
   );
 }
 
-export function EmptyState({ icon, title, description }: { icon: string; title: string; description?: string }) {
+interface EmptyStateProps {
+  icon: React.ReactNode;
+  title: string;
+  description?: string;
+}
+
+export function EmptyState({ icon, title, description }: EmptyStateProps) {
   return (
     <div className="empty-state">
       <div className="empty-state-icon">{icon}</div>
