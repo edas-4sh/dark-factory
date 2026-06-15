@@ -1,5 +1,5 @@
-# Project Title
+# Dark Factory
 
-[![CI](https://github.com/your-repo/your-project/actions/workflows/ci.yml/badge.svg)](https://github.com/your-repo/your-project/actions/workflows/ci.yml)
+[![CI](https://github.com/edas-4sh/dark-factory/actions/workflows/ci.yml/badge.svg)](https://github.com/edas-4sh/dark-factory/actions/workflows/ci.yml)
 
-Project description goes here.
+*Add your existing README content here...*
